@@ -32,22 +32,31 @@ func _process(delta: float) -> void:
 
 
 func launch() -> void:
-	for ray in rays.get_children():
+	for ray: RayCast2D in rays.get_children():
 		ray.enabled = true
 		ray.force_raycast_update()
 
-		var collided := false
+		var striped_target = ray.get_collision_point()
+		if not ray.is_colliding():
+			ray.enabled = false
+			continue
 
-		if ray.is_colliding():
-			launched = true
-			target = ray.get_collision_point()
-			rope.show()
-			collided = true
+		ray.set_collision_mask_value(1, true)
+		ray.force_raycast_update()
+
+		var ground_target = ray.get_collision_point()
+		if striped_target != ground_target:
+			ray.set_collision_mask_value(1, false)
+			ray.enabled = false
+			continue
+
+		ray.set_collision_mask_value(1, false)
+
+		launched = true
+		target = ray.get_collision_point()
+		rope.show()
 
 		ray.enabled = false
-
-		if collided:
-			break
 
 
 func retract() -> void:
