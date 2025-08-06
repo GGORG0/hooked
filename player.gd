@@ -7,6 +7,7 @@ const ACCELERATION = 2.0
 const DECELERATION = 6.0
 
 
+@onready var anim := $AnimatedSprite2D
 @onready var grapple_controller := $GrappleController
 
 
@@ -24,11 +25,11 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = lerpf(velocity.x, direction * SPEED, ACCELERATION * delta)
 
-		$AnimatedSprite2D.flip_h = direction < 0
-		$AnimatedSprite2D.play("walk")
+		anim.flip_h = direction < 0
+		anim.play("walk")
 	else:
 		velocity.x = lerpf(velocity.x, 0, DECELERATION * delta)
 
-		$AnimatedSprite2D.play("idle")
+		anim.play("idle")
 
 	move_and_slide()
