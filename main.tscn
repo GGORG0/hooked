@@ -457,6 +457,7 @@ points = PackedVector2Array(0, 0, 0, 0)
 width = 5.0
 
 [node name="AimHint" type="Sprite2D" parent="Player/GrappleController"]
+visible = false
 z_index = 1
 scale = Vector2(2, 2)
 texture = ExtResource("6_272bh")
