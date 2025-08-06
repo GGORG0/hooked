@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b83xx1tuf0asl" path="res://exit.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://c1iupr4h8ru2a" path="res://player.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://d37qbn46i3e2p" path="res://art/player.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://kqyc3qrqp5ny" path="res://art/world_tileset.png" id="2_0xm2m"]
+[ext_resource type="SpriteFrames" uid="uid://bad06of5ehggi" path="res://art/aseprite/player.aseprite" id="3_1bvp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(64, 64)
@@ -405,9 +405,34 @@ script = ExtResource("1_h2yge")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
 scale = Vector2(4, 4)
-texture = ExtResource("1_ig7tw")
+sprite_frames = ExtResource("3_1bvp3")
+animation = &"idle"
+frame = 3
+frame_progress = 0.0515802
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"output_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://art/aseprite/player.aseprite",
+"source_uid": 2394187845805108196
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0c5083b1a3717dfe5b93af0d7c8d6b5c"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
