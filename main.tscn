@@ -447,10 +447,6 @@ script = ExtResource("4_lquwl")
 [node name="GrappleController" type="Node2D" parent="Player"]
 script = ExtResource("5_7mycd")
 
-[node name="RayCast2D" type="RayCast2D" parent="Player/GrappleController"]
-enabled = false
-target_position = Vector2(2000, 0)
-
 [node name="Rope" type="Line2D" parent="Player/GrappleController"]
 visible = false
 points = PackedVector2Array(0, 0, 0, 0)
@@ -463,6 +459,62 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_272bh")
 offset = Vector2(0, -26)
 script = ExtResource("7_5vw27")
+
+[node name="RayCasts" type="Node2D" parent="Player/GrappleController"]
+
+[node name="RayCast2D-01" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-02" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = 0.0174533
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-03" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = -0.0174533
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-04" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = 0.0349066
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-05" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = -0.0349066
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-06" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = 0.0523599
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-07" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = -0.0523599
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-08" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = 0.0698132
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-09" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = -0.0698132
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-10" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = 0.0872665
+enabled = false
+target_position = Vector2(2000, 0)
+
+[node name="RayCast2D-11" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
+rotation = -0.0872665
+enabled = false
+target_position = Vector2(2000, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)

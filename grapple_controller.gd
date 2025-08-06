@@ -6,7 +6,7 @@ const STIFFNESS = 12.5
 const DAMPING = 1.5
 
 
-@onready var ray := $RayCast2D
+@onready var rays := $RayCasts
 @onready var player := get_parent()
 @onready var rope := $Rope
 @onready var aim_hint := $AimHint
@@ -18,9 +18,9 @@ var target: Vector2
 
 func _process(delta: float) -> void:
 	if aim_hint.is_aiming:
-		ray.rotation = aim_hint.angle
+		rays.rotation = aim_hint.angle
 	else:
-		ray.look_at(get_global_mouse_position())
+		rays.look_at(get_global_mouse_position())
 
 	if Input.is_action_just_pressed("grapple"):
 		launch()
@@ -32,15 +32,22 @@ func _process(delta: float) -> void:
 
 
 func launch() -> void:
-	ray.enabled = true
-	ray.force_raycast_update()
+	for ray in rays.get_children():
+		ray.enabled = true
+		ray.force_raycast_update()
 
-	if ray.is_colliding():
-		launched = true
-		target = ray.get_collision_point()
-		rope.show()
+		var collided := false
 
-	ray.enabled = false
+		if ray.is_colliding():
+			launched = true
+			target = ray.get_collision_point()
+			rope.show()
+			collided = true
+
+		ray.enabled = false
+
+		if collided:
+			break
 
 
 func retract() -> void:
