@@ -1,14 +1,15 @@
 extends Node2D
 
 
-const REST_LENGTH = 2.0
-const STIFFNESS = 10.0
+const REST_LENGTH = 1.5
+const STIFFNESS = 12.5
 const DAMPING = 1.5
 
 
 @onready var ray := $RayCast2D
 @onready var player := get_parent()
 @onready var rope := $Rope
+@onready var aim_hint := $AimHint
 
 
 var launched := false
@@ -16,7 +17,10 @@ var target: Vector2
 
 
 func _process(delta: float) -> void:
-	ray.look_at(get_global_mouse_position())
+	if aim_hint.is_aiming:
+		ray.rotation = aim_hint.angle
+	else:
+		ray.look_at(get_global_mouse_position())
 
 	if Input.is_action_just_pressed("grapple"):
 		launch()

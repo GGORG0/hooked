@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://dwv1jklyh2o1"]
+[gd_scene load_steps=12 format=4 uid="uid://dwv1jklyh2o1"]
 
 [ext_resource type="Script" uid="uid://b83xx1tuf0asl" path="res://exit.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://c1iupr4h8ru2a" path="res://player.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://kqyc3qrqp5ny" path="res://art/world_tileset.png" id="2_0xm2m"]
-[ext_resource type="SpriteFrames" uid="uid://bad06of5ehggi" path="res://art/aseprite/player.aseprite" id="3_1bvp3"]
+[ext_resource type="SpriteFrames" uid="uid://bad06of5ehggi" path="res://art/player.aseprite" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://b28ct476gx2kc" path="res://camera_2d.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://q8qwa7km7n1v" path="res://grapple_controller.gd" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://c0xn1bghtdv8x" path="res://art/grapple_aim_hint.aseprite" id="6_272bh"]
+[ext_resource type="Script" uid="uid://cc3klsi0cj2y7" path="res://aim_hint.gd" id="7_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(64, 64)
@@ -418,7 +420,9 @@ metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": false,
 "output_section": false,
-"pending_changes": {},
+"pending_changes": {
+"source": "res://art/player.aseprite"
+},
 "slice_section": false
 }
 metadata/_aseprite_wizard_config_ = {
@@ -447,8 +451,16 @@ script = ExtResource("5_7mycd")
 target_position = Vector2(1000, 0)
 
 [node name="Rope" type="Line2D" parent="Player/GrappleController"]
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 width = 5.0
+
+[node name="AimHint" type="Sprite2D" parent="Player/GrappleController"]
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("6_272bh")
+offset = Vector2(0, -26)
+script = ExtResource("7_5vw27")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
