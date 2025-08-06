@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 400.0
+const SPEED = 500.0
 const JUMP_VELOCITY = -600.0
+const ACCELERATION = 2.0
+const DECELERATION = 6.0
 
 
 func _physics_process(delta: float) -> void:
@@ -14,12 +16,12 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("left", "right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = lerpf(velocity.x, direction * SPEED, ACCELERATION * delta)
 
 		$AnimatedSprite2D.flip_h = direction < 0
 		$AnimatedSprite2D.play("walk")
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = lerpf(velocity.x, 0, DECELERATION * delta)
 
 		$AnimatedSprite2D.play("idle")
 
