@@ -6,6 +6,11 @@ var is_aiming := false
 
 
 func _process(_delta: float) -> void:
+	if Input.is_action_pressed("grapple"):
+		self.hide()
+		is_aiming = false
+		return
+
 	var horizontal = Input.get_axis("aim_grapple_left", "aim_grapple_right")
 	var vertical = Input.get_axis("aim_grapple_up", "aim_grapple_down")
 
