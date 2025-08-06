@@ -8,7 +8,7 @@ var is_mouse_panning := false
 
 
 # Mouse panning
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var target = event.position - get_viewport().size * 0.5
 
@@ -21,7 +21,7 @@ func _input(event: InputEvent):
 
 
 # Gamepad panning
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	var viewport_size = get_viewport().size
 	var horizontal = Input.get_axis("pan_left", "pan_right")
 	var vertical = Input.get_axis("pan_up", "pan_down")

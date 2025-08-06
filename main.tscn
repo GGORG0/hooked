@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://dwv1jklyh2o1"]
+[gd_scene load_steps=10 format=4 uid="uid://dwv1jklyh2o1"]
 
 [ext_resource type="Script" uid="uid://b83xx1tuf0asl" path="res://exit.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://c1iupr4h8ru2a" path="res://player.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://kqyc3qrqp5ny" path="res://art/world_tileset.png" id="2_0xm2m"]
 [ext_resource type="SpriteFrames" uid="uid://bad06of5ehggi" path="res://art/aseprite/player.aseprite" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://b28ct476gx2kc" path="res://camera_2d.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://q8qwa7km7n1v" path="res://grapple_controller.gd" id="5_7mycd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(64, 64)
@@ -395,7 +396,7 @@ terrain_set_0/terrain_0/name = "Ground"
 terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
 sources/2 = SubResource("TileSetAtlasSource_0xm2m")
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -438,6 +439,16 @@ metadata/_aseprite_wizard_source_file_hash_ = "0c5083b1a3717dfe5b93af0d7c8d6b5c"
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 script = ExtResource("4_lquwl")
+
+[node name="GrappleController" type="Node2D" parent="Player"]
+script = ExtResource("5_7mycd")
+
+[node name="RayCast2D" type="RayCast2D" parent="Player/GrappleController"]
+target_position = Vector2(1000, 0)
+
+[node name="Rope" type="Line2D" parent="Player/GrappleController"]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 5.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)

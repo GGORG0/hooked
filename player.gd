@@ -7,12 +7,18 @@ const ACCELERATION = 2.0
 const DECELERATION = 6.0
 
 
+@onready var grapple_controller := $GrappleController
+
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or grapple_controller.launched):
+		if not is_on_floor():
+			grapple_controller.retract()
+
+		velocity.y += JUMP_VELOCITY
 
 	var direction := Input.get_axis("left", "right")
 	if direction:
