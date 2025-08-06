@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		handle_grapple(delta)
 
 
-func launch() -> void:
+func cast_ray():
 	for ray: RayCast2D in rays.get_children():
 		ray.enabled = true
 		ray.force_raycast_update()
@@ -50,13 +50,24 @@ func launch() -> void:
 			ray.enabled = false
 			continue
 
+		var point = ray.get_collision_point()
+
 		ray.set_collision_mask_value(1, false)
-
-		launched = true
-		target = ray.get_collision_point()
-		rope.show()
-
 		ray.enabled = false
+
+		return point
+
+	return null
+
+
+func launch() -> void:
+	var point = cast_ray()
+	if point == null:
+		return
+
+	launched = true
+	target = point
+	rope.show()
 
 
 func retract() -> void:

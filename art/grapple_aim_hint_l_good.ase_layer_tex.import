@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture-split-layer"
+type="PortableCompressedTexture2D"
+uid="uid://c2mjv7ysm8uje"
+path="res://.godot/imported/grapple_aim_hint_l_good.ase_layer_tex-31ff1e938bfb1c89aa6fc386c443616e.res"
+
+[deps]
+
+source_file="res://art/grapple_aim_hint_l_good.ase_layer_tex"
+dest_files=["res://.godot/imported/grapple_aim_hint_l_good.ase_layer_tex-31ff1e938bfb1c89aa6fc386c443616e.res"]
+
+[params]
+
