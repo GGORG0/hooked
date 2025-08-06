@@ -32,10 +32,15 @@ func _process(delta: float) -> void:
 
 
 func launch() -> void:
+	ray.enabled = true
+	ray.force_raycast_update()
+
 	if ray.is_colliding():
 		launched = true
 		target = ray.get_collision_point()
 		rope.show()
+
+	ray.enabled = false
 
 
 func retract() -> void:
