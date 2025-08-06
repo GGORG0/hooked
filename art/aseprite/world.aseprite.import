@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://vmbvdjcx2l0o"
+path="res://.godot/imported/world.aseprite-f180eb4ff49f992229b31c24eaa4ae7d.res"
+
+[deps]
+
+source_file="res://art/aseprite/world.aseprite"
+dest_files=["res://.godot/imported/world.aseprite-f180eb4ff49f992229b31c24eaa4ae7d.res"]
+
+[params]
+
