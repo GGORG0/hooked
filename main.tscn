@@ -843,6 +843,7 @@ offset = Vector2(0, -26)
 script = ExtResource("7_5vw27")
 
 [node name="RayCasts" type="Node2D" parent="Player/GrappleController"]
+visible = false
 
 [node name="RayCast2D-01" type="RayCast2D" parent="Player/GrappleController/RayCasts"]
 enabled = false
