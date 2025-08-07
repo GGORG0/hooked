@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dwv1jklyh2o1"]
+[gd_scene load_steps=13 format=4 uid="uid://dwv1jklyh2o1"]
 
 [ext_resource type="Script" uid="uid://b83xx1tuf0asl" path="res://exit.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://c1iupr4h8ru2a" path="res://player.gd" id="1_h2yge"]
@@ -9,8 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://drra2xo50n2xu" path="res://art/grapple_aim_hint_l_bad.ase_layer_tex" id="6_5vw27"]
 [ext_resource type="Script" uid="uid://cc3klsi0cj2y7" path="res://aim_hint.gd" id="7_5vw27"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(64, 64)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5vw27"]
+radius = 24.2105
+height = 63.1579
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(31.579, 31.579)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("2_0xm2m")
@@ -788,8 +792,12 @@ collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_h2yge")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_ig7tw")
+[node name="CapsuleCollision" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_5vw27")
+
+[node name="SquareCollision" type="CollisionShape2D" parent="Player"]
+position = Vector2(3.05176e-05, 15.7895)
+shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
