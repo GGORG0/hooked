@@ -803,7 +803,7 @@ shape = SubResource("RectangleShape2D_5vw27")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("3_1bvp3")
-animation = &"grapple"
+animation = &"idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": false,
