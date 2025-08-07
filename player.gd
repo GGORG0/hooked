@@ -32,4 +32,7 @@ func _physics_process(delta: float) -> void:
 
 		anim.play("idle")
 
+	if grapple_controller.launched:
+		anim.play("grapple")
+
 	move_and_slide()

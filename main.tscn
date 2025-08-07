@@ -795,9 +795,7 @@ shape = SubResource("RectangleShape2D_ig7tw")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("3_1bvp3")
-animation = &"idle"
-frame = 3
-frame_progress = 0.0515802
+animation = &"grapple"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": false,
@@ -831,8 +829,11 @@ script = ExtResource("5_7mycd")
 
 [node name="Rope" type="Line2D" parent="Player/GrappleController"]
 visible = false
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(0, 12, 0, 0)
 width = 5.0
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 
 [node name="AimHint" type="Sprite2D" parent="Player/GrappleController"]
 visible = false
