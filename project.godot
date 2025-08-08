@@ -15,6 +15,11 @@ run/main_scene="uid://dwv1jklyh2o1"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
