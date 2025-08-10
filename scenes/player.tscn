@@ -1,0 +1,150 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdkxf0tnjbjrq"]
+
+[ext_resource type="Script" uid="uid://c1iupr4h8ru2a" path="res://scripts/player.gd" id="1_tuyoq"]
+[ext_resource type="SpriteFrames" uid="uid://bad06of5ehggi" path="res://art/player.aseprite" id="2_fjrip"]
+[ext_resource type="Script" uid="uid://b28ct476gx2kc" path="res://scripts/camera_2d.gd" id="3_smehm"]
+[ext_resource type="Script" uid="uid://q8qwa7km7n1v" path="res://scripts/grapple_controller.gd" id="4_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://drra2xo50n2xu" path="res://art/grapple_aim_hint_l_bad.ase_layer_tex" id="5_y4r1p"]
+[ext_resource type="Script" uid="uid://cc3klsi0cj2y7" path="res://scripts/aim_hint.gd" id="6_d2wvv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3v2ag"]
+radius = 24.2105
+height = 63.1579
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
+size = Vector2(31.579, 31.579)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_tuyoq")
+
+[node name="CapsuleCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3v2ag")
+
+[node name="SquareCollision" type="CollisionShape2D" parent="."]
+position = Vector2(3.05176e-05, 15.7895)
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("2_fjrip")
+animation = &"idle"
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"output_section": false,
+"pending_changes": {
+"source": "res://art/player.aseprite"
+},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://art/aseprite/player.aseprite",
+"source_uid": 2394187845805108196
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0c5083b1a3717dfe5b93af0d7c8d6b5c"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+script = ExtResource("3_smehm")
+
+[node name="GrappleController" type="Node2D" parent="."]
+script = ExtResource("4_ur7pv")
+
+[node name="Rope" type="Line2D" parent="GrappleController"]
+visible = false
+points = PackedVector2Array(0, 12, 0, 0)
+width = 5.0
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="AimHint" type="Sprite2D" parent="GrappleController"]
+visible = false
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("5_y4r1p")
+offset = Vector2(0, -26)
+script = ExtResource("6_d2wvv")
+
+[node name="RayCasts" type="Node2D" parent="GrappleController"]
+visible = false
+
+[node name="RayCast2D-01" type="RayCast2D" parent="GrappleController/RayCasts"]
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-02" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = 0.0174533
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-03" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = -0.0174533
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-04" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = 0.0349066
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-05" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = -0.0349066
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-06" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = 0.0523599
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-07" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = -0.0523599
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-08" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = 0.0698132
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-09" type="RayCast2D" parent="GrappleController/RayCasts"]
+rotation = -0.0698132
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-10" type="RayCast2D" parent="GrappleController/RayCasts"]
+position = Vector2(0, 2)
+rotation = 0.0872665
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 4
+
+[node name="RayCast2D-11" type="RayCast2D" parent="GrappleController/RayCasts"]
+position = Vector2(0, -2)
+rotation = -0.0872665
+enabled = false
+target_position = Vector2(2000, 0)
+collision_mask = 5
