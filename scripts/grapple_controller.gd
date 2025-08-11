@@ -1,3 +1,4 @@
+class_name GrappleController
 extends Node2D
 
 
@@ -6,12 +7,13 @@ const STIFFNESS = 12.5
 const DAMPING = 1.5
 
 
-@onready var rays := $RayCasts
-@onready var player := get_parent()
-@onready var rope := $Rope
-@onready var aim_hint := $AimHint
+@onready var rays: Node2D = $RayCasts
+@onready var player: CharacterBody2D = get_parent()
+@onready var rope: Line2D = $Rope
+@onready var aim_hint: Sprite2D = $AimHint
 
 
+var no_grapple_areas: Array[NoGrappleArea] = []
 var launched := false
 var target: Vector2
 
@@ -32,6 +34,9 @@ func _process(delta: float) -> void:
 
 
 func cast_ray():
+	if no_grapple_areas.size() > 0:
+		return null
+
 	for ray: RayCast2D in rays.get_children():
 		ray.enabled = true
 		ray.force_raycast_update()
@@ -76,6 +81,10 @@ func retract() -> void:
 
 
 func handle_grapple(delta: float) -> void:
+	if no_grapple_areas.size() > 0:
+		retract()
+		return
+
 	var player_pos = player.global_position
 	var target_dir = player_pos.direction_to(target)
 	var target_dist = player_pos.distance_to(target)

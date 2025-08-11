@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -7,8 +8,8 @@ const ACCELERATION = 2.0
 const DECELERATION = 6.0
 
 
-@onready var anim := $AnimatedSprite2D
-@onready var grapple_controller := $GrappleController
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var grapple_controller: GrappleController = $GrappleController
 
 
 func _physics_process(delta: float) -> void:

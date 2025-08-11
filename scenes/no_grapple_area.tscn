@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqv2k7tix3ivo"]
+
+[ext_resource type="Texture2D" uid="uid://cxlkdeycw55js" path="res://art/no_grapple_area.aseprite" id="1_k8x4i"]
+[ext_resource type="Script" uid="uid://ctdc1oyd751bl" path="res://scripts/no_grapple_area.gd" id="2_py70j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8x4i"]
+size = Vector2(16, 16)
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_k8x4i")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_py70j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_k8x4i")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

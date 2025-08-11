@@ -1,7 +1,7 @@
 extends Sprite2D
 
 
-@onready var grapple_controller := get_parent()
+@onready var grapple_controller: GrappleController = get_parent()
 
 
 var angle: float
