@@ -1,0 +1,49 @@
+name: Export Godot Project
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GODOT_VERSION: "4.4.1-stable"
+jobs:
+  export-game:
+    runs-on: ubuntu-latest
+    needs: import-assets
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Wine
+        run: |
+          sudo apt install wine64
+          echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+
+      - name: Export Game using Godot
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_linux.x86_64.zip"
+          godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_export_templates.tpz"
+          relative_project_path: "./"
+          use_preset_export_path: true
+          cache: true
+          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+
+      - name: Upload Linux
+        uses: actions/upload-artifact@v4
+        with:
+          name: Linux
+          path: ./export/Hooked-linux.zip
+
+      - name: Upload Windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows
+          path: ./export/Hooked-windows.zip
+
+      - name: Upload MacOS
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS
+          path: ./export/Hooked-macOS.zip
