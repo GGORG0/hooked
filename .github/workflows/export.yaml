@@ -8,16 +8,75 @@ on:
 env:
   GODOT_VERSION: "4.4.1-stable"
 jobs:
-  export-game:
+  export:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Restore Aseprite cache
+        uses: actions/cache/restore@v4
+        id: aseprite-cache
+        with:
+          path: "aseprite/build/bin"
+          key: aseprite-bin
 
-      - name: Install Aseprite
-        uses: neomura/setup-aseprite-cli-action@v1.0.1
+      - name: Checkout Aseprite
+        uses: actions/checkout@v5
+        if: steps.aseprite-cache.outputs.cache-hit != 'true'
+        with:
+          path: aseprite
+          repository: "aseprite/aseprite"
+          submodules: recursive
 
-      - name: Export Game using Godot
+      - name: Install Aseprite Dependencies
+        shell: bash
+        working-directory: aseprite
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y \
+            libpixman-1-dev libfreetype6-dev libharfbuzz-dev zlib1g-dev \
+            libx11-dev libxcursor-dev libxi-dev libgl1-mesa-dev libfontconfig1-dev
+
+      - name: Aseprite ccache
+        uses: hendrikmuhs/ccache-action@v1.2.17
+        if: steps.aseprite-cache.outputs.cache-hit != 'true'
+        with:
+          key: aseprite-ccache
+
+      - uses: aseprite/get-ninja@main
+        if: steps.aseprite-cache.outputs.cache-hit != 'true'
+
+      - name: Generate Aseprite Makefiles
+        if: steps.aseprite-cache.outputs.cache-hit != 'true'
+        shell: bash
+        working-directory: aseprite
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 \
+            -DENABLE_TESTS=OFF \
+            -DENABLE_SCRIPTING=off \
+            -DENABLE_CCACHE=on \
+            -DLAF_BACKEND=none
+
+      - name: Compile Aseprite
+        if: steps.aseprite-cache.outputs.cache-hit != 'true'
+        shell: bash
+        working-directory: aseprite/build
+        run: ninja
+
+      - name: Save Aseprite cache
+        uses: actions/cache/save@v4
+        with:
+          path: "aseprite/build/bin"
+          key: aseprite-bin
+
+      - name: Add Aseprite to PATH
+        shell: bash
+        run: echo "$PWD/aseprite/build/bin" >> $GITHUB_PATH
+
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Export game using Godot
         uses: firebelley/godot-export@v6.0.0
         with:
           godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_linux.x86_64.zip"
