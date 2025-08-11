@@ -8,19 +8,6 @@ on:
 env:
   GODOT_VERSION: "4.4.1-stable"
 jobs:
-  import-assets:
-    runs-on: ubuntu-latest
-    container: barichello/godot-ci:4.2.1
-    steps:
-      - uses: actions/checkout@v4
-      - name: Cache import assets
-        uses: actions/cache@v3
-        with:
-          path: .godot/imported/
-          key: import-assets-${{ runner.os }}-${{ github.sha }}
-      - name: Import assets
-        run: godot --headless --verbose --editor --quit
-
   export:
     runs-on: ubuntu-latest
     steps:
