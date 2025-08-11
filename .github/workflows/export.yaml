@@ -100,19 +100,19 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Linux
-          path: ./hooked/export/Hooked-linux.zip
+          path: ./hooked/export/Linux/Hooked-linux.zip
           if-no-files-found: error
 
       - name: Upload Windows
         uses: actions/upload-artifact@v4
         with:
           name: Windows
-          path: ./hooked/export/Hooked-windows.zip
+          path: "./hooked/export/Windows Desktop/Hooked-windows.zip"
           if-no-files-found: error
 
       - name: Upload MacOS
         uses: actions/upload-artifact@v4
         with:
           name: macOS
-          path: ./hooked/export/Hooked-macOS.zip
+          path: ./hooked/export/macOS/Hooked-macOS.zip
           if-no-files-found: error
