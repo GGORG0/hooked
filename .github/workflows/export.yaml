@@ -78,14 +78,12 @@ jobs:
         with:
           path: hooked
 
-      - name: (debug) aseprite
+      - name: Install Wine
+        id: wine_install
         run: |
-          echo $PATH
-          ls -l $PWD/aseprite/build/bin
-          aseprite --version
-          aseprite --all-layers -b --list-layers ./hooked/art/player.aseprite
-          aseprite --all-layers -b --list-tags --list-slices --data /tmp/player.json --format json-array --sheet /tmp/player.png ./hooked/art/player.aseprite --merge-duplicates --sheet-type packed --shape-padding 0
-          ls /tmp/player.*
+          sudo apt-get update -qq
+          sudo apt-get install -y wine64
+          echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
 
       - name: Export game using Godot
         uses: firebelley/godot-export@v6.0.0
@@ -95,24 +93,25 @@ jobs:
           relative_project_path: "./hooked"
           use_preset_export_path: true
           cache: true
+          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
 
       - name: Upload Linux
         uses: actions/upload-artifact@v4
         with:
           name: Linux
-          path: ./hooked/export/Linux/Hooked-linux.zip
+          path: ./hooked/export/Linux/Hooked-linux
           if-no-files-found: error
 
       - name: Upload Windows
         uses: actions/upload-artifact@v4
         with:
           name: Windows
-          path: "./hooked/export/Windows Desktop/Hooked-windows.zip"
+          path: ./hooked/export/Windows/Hooked-windows.exe
           if-no-files-found: error
 
       - name: Upload MacOS
         uses: actions/upload-artifact@v4
         with:
           name: macOS
-          path: ./hooked/export/macOS/Hooked-macOS.zip
+          path: ./hooked/export/macOS/Hooked-macOS.app
           if-no-files-found: error
