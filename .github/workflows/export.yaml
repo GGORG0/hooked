@@ -113,5 +113,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: macOS
-          path: ./hooked/export/macOS/Hooked-macOS.app
+          path: ./hooked/export/macOS
           if-no-files-found: error
