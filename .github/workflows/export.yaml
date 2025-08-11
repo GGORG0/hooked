@@ -8,6 +8,19 @@ on:
 env:
   GODOT_VERSION: "4.4.1-stable"
 jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    container: barichello/godot-ci:4.2.1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache import assets
+        uses: actions/cache@v3
+        with:
+          path: .godot/imported/
+          key: import-assets-${{ runner.os }}-${{ github.sha }}
+      - name: Import assets
+        run: godot --headless --verbose --editor --quit
+
   export:
     runs-on: ubuntu-latest
     steps:
@@ -75,34 +88,44 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v5
+        with:
+          path: hooked
+
+      - name: (debug) aseprite
+        run: |
+          echo $PATH
+          ls -l $PWD/aseprite/build/bin
+          aseprite --version
+          aseprite --all-layers -b --list-layers ./hooked/art/player.aseprite
+          aseprite --all-layers -b --list-tags --list-slices --data /tmp/player.json --format json-array --sheet /tmp/player.png ./hooked/art/player.aseprite --merge-duplicates --sheet-type packed --shape-padding 0
+          ls /tmp/player.*
 
       - name: Export game using Godot
         uses: firebelley/godot-export@v6.0.0
         with:
           godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_linux.x86_64.zip"
           godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_export_templates.tpz"
-          relative_project_path: "./"
+          relative_project_path: "./hooked"
           use_preset_export_path: true
           cache: true
-          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
 
       - name: Upload Linux
         uses: actions/upload-artifact@v4
         with:
           name: Linux
-          path: ./export/Hooked-linux.zip
+          path: ./hooked/export/Hooked-linux.zip
           if-no-files-found: error
 
       - name: Upload Windows
         uses: actions/upload-artifact@v4
         with:
           name: Windows
-          path: ./export/Hooked-windows.zip
+          path: ./hooked/export/Hooked-windows.zip
           if-no-files-found: error
 
       - name: Upload MacOS
         uses: actions/upload-artifact@v4
         with:
           name: macOS
-          path: ./export/Hooked-macOS.zip
+          path: ./hooked/export/Hooked-macOS.zip
           if-no-files-found: error
