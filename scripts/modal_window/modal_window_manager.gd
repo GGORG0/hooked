@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const DEFAULT_WINDOW = preload("res://addons/modal_window/default_window.tscn")
+const DEFAULT_WINDOW = preload("res://scripts/modal_window/default_window.tscn")
 
 var global_preset: PackedScene = DEFAULT_WINDOW
 
@@ -9,7 +9,7 @@ var global_preset: PackedScene = DEFAULT_WINDOW
 func _init() -> void:
 	name = "ModalWindowManager"
 	layer = 2
-	
+
 # 创建对话框
 func create(content: Variant, title: String = "", preset: PackedScene = null) -> ModalWindow:
 	if preset == null:

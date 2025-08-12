@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ModalWindowManager="*res://addons/modal_window/modal_window_manager.gd"
+ModalWindowManager="*res://scripts/modal_window/modal_window_manager.gd"
 
 [display]
 
@@ -34,7 +34,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/modal_window/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [input]
 

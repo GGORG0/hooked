@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5sw3c0m3w2e8"
-path="res://.godot/imported/icon_outline_cross.svg-56e1e5a3ec206dfa9a45e7eeb968f663.ctex"
+uid="uid://dxfdolklfyt6f"
+path="res://.godot/imported/check_square_color.svg-14a0b1b9863c96a667b02d728f26bfa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/modal_window/icon_outline_cross.svg"
-dest_files=["res://.godot/imported/icon_outline_cross.svg-56e1e5a3ec206dfa9a45e7eeb968f663.ctex"]
+source_file="res://scripts/modal_window/check_square_color.svg"
+dest_files=["res://.godot/imported/check_square_color.svg-14a0b1b9863c96a667b02d728f26bfa0.ctex"]
 
 [params]
 

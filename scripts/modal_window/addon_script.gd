@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 const AUTOLOAD_NAME := "ModalWindowManager"
-const AUTOLOAD_PATH := "res://addons/modal_window/modal_window_manager.gd"
+const AUTOLOAD_PATH := "res://scripts/modal_window/modal_window_manager.gd"
 
 func _enter_tree() -> void:
 	# 自动注册 Autoload
