@@ -15,6 +15,10 @@ run/main_scene="uid://dwv1jklyh2o1"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ModalWindowManager="*res://addons/modal_window/modal_window_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -29,7 +33,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/modal_window/plugin.cfg")
 
 [input]
 
