@@ -115,3 +115,10 @@ jobs:
           name: macOS
           path: ./hooked/export/macOS
           if-no-files-found: error
+
+      - name: Upload Web
+        uses: actions/upload-artifact@v4
+        with:
+          name: Web
+          path: ./hooked/export/Web
+          if-no-files-found: error
