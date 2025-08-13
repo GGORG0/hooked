@@ -120,5 +120,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Web
-          path: ./hooked/export/Hooked-Web
+          path: ./hooked/export/Hooked-web
           if-no-files-found: error
